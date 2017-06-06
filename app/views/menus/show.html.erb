@@ -1,8 +1,9 @@
+<div id="content">
 <p id="notice"><%= notice %></p>
 
 <p>
   <strong>Item:</strong>
-  <%= @menu.item %>
+  <%= @menu.item.titleize %>
 </p>
 
 <p>
@@ -12,13 +13,19 @@
 
 <p>
   <strong>Cost:</strong>
-  <%= @menu.cost %>
+  <%= number_to_currency @menu.cost %>
 </p>
 
 <p>
   <strong>Image:</strong>
-  <%= @menu.image %>
+  <%= image_tag attachment_url(@menu, :image, :fill, 300, 300, format: "jpg") unless @menu.image == nil %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @menu.food_type %>
 </p>
 
 <%= link_to 'Edit', edit_menu_path(@menu) %> |
 <%= link_to 'Back', menus_path %>
+</div>

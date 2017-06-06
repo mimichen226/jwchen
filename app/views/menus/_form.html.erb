@@ -28,7 +28,12 @@
 
   <div class="field">
     <%= form.label :image %>
-    <%= form.text_field :image, id: :menu_image %>
+    <%= form.attachment_field :image%>
+  </div>
+
+  <div class="field">
+    <%= form.label :food_type %>
+    <%= form.text_field :food_type, id: :menu_food_type %>
   </div>
 
   <div class="actions">

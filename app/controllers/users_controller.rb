@@ -7,6 +7,12 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
+  def import
+    User.import(params[:file])
+    # after the import, redirect and let us know the method worked
+    redirect_to 'users', notice: "User Data imported!"
+  end
+
   # GET /users/1
   # GET /users/1.json
   def show

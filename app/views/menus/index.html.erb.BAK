@@ -1,0 +1,57 @@
+<p id="notice"><%= notice %></p>
+
+<div id="content">
+<h1>Menu</h1>
+
+<%= link_to menu_path(@menu) do %>
+<div id="feature">
+  <h2>Featured Food</h2>
+    <%= @menu.item %>
+    <div id="featured_img">
+      <%= image_tag("food/" + @menu.image) unless @menu.image == "N/A" %>
+    </div>
+</div>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Item</th>
+      <th>Detail</th>
+      <th>Cost</th>
+      <th>Image</th>
+      <th>Type</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @menus.each do |menu| %>
+      <tr>
+        <td><%= menu.item %></td>
+        <td><%= menu.detail %></td>
+        <td><%= menu.cost %></td>
+        <td><%= menu.image %></td>
+        <td><%= menu.food_type %></dt>
+        <td><%= link_to 'Show', menu %></td>
+        <td><%= link_to 'Edit', edit_menu_path(menu) %></td>
+        <td><%= link_to 'Destroy', menu, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Menu', new_menu_path %>
+
+<div class="upload">
+
+</div>
+  <%= form_tag({:action => :import}, multiart: true) do %>
+    <%= file_field_tag :file %>
+    <%=submit_tag("import") %>
+  <% end %>
+</div>
+
+</div>

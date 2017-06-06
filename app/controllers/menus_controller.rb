@@ -1,10 +1,16 @@
 class MenusController < ApplicationController
   before_action :set_menu, only: [:show, :edit, :update, :destroy]
 
+  def import
+    Menu.import(params[:file])
+    redirect_to root_url, notice: "Food Data imported"
+  end
+
   # GET /menus
   # GET /menus.json
   def index
     @menus = Menu.all
+    @menu = Menu.order('RANDOM()').first
   end
 
   # GET /menus/1
@@ -69,6 +75,6 @@ class MenusController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def menu_params
-      params.require(:menu).permit(:item, :detail, :cost, :image)
+      params.require(:menu).permit(:item, :detail, :cost, :image, :food_type)
     end
 end
